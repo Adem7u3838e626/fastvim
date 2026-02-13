@@ -1,0 +1,2 @@
+# fastvim
+my neovim settup 
