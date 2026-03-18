@@ -10,5 +10,5 @@ My personal Neovim configuration.
 ## Installation
 
 ```bash
-git clone https://github.com/USERNAME/fastvim ~/.config/nvim
+git clone https://github.com/Adem7u3838e626/fastvim ~/.config/nvim
 
