@@ -1,36 +1,56 @@
 return {
   "nvim-telescope/telescope.nvim",
-  branch = "0.1.x",
   dependencies = {
     "nvim-lua/plenary.nvim",
-    { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    {
+      "nvim-telescope/telescope-fzf-native.nvim",
+      build = "make"
+    },
     "nvim-tree/nvim-web-devicons",
   },
   config = function()
     local telescope = require("telescope")
     local actions = require("telescope.actions")
+
     telescope.setup({
       defaults = {
         path_display = { "smart" },
         dynamic_preview_title = true,
+        file_ignore_patterns = { ".git/", "node_modules/", ".cache/" },
         mappings = {
           i = {
-            ["<Tab>"] = actions.move_selection_previous, -- move to prev result
-            ["<S-Tab>"] = actions.move_selection_next, -- move to next result
-            ["<leader>c"] = function(prompt_bufnr)
-              actions.send_selected_to_qflist(prompt_bufnr)
-              actions.open_qflist(prompt_bufnr)
-            end,
-          },  
+            ["<Tab>"] = actions.move_selection_previous,
+            ["<S-Tab>"] = actions.move_selection_next,
+            ["<C-q>"] = actions.send_selected_to_qflist + actions.open_qflist,
+            ["<Esc>"] = actions.close,
+          },
+          n = {
+            ["<Esc>"] = actions.close,
+          },
+        },
+      },
+      pickers = {
+        find_files = {
+          hidden = true,
+        },
+        live_grep = {
+          additional_args = function(_)
+            return { "--hidden" }
+          end,
         },
       },
     })
+
     telescope.load_extension("fzf")
-    local keymap = vim.keymap -- for conciseness
+
+    local keymap = vim.keymap
+
     keymap.set("n", "<leader>cs", "<cmd>Telescope colorscheme<cr>", { desc = "Pick colorscheme" })
-    keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-    keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Fuzzy find recent files" })
-    keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
-    keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Find string under cursor in cwd" })
+    keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>", { desc = "Find files" })
+    keymap.set("n", "<leader>fr", "<cmd>Telescope oldfiles<cr>", { desc = "Recent files" })
+    keymap.set("n", "<leader>fs", "<cmd>Telescope live_grep<cr>", { desc = "Live grep" })
+    keymap.set("n", "<leader>fc", "<cmd>Telescope grep_string<cr>", { desc = "Grep string under cursor" })
+    keymap.set("n", "<leader>fb", "<cmd>Telescope buffers<cr>", { desc = "Find open buffers" })
+    keymap.set("n", "<leader>fh", "<cmd>Telescope help_tags<cr>", { desc = "Find help tags" })
   end,
 }

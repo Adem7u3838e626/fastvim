@@ -29,6 +29,9 @@ return {
       "clangd",                     -- C/C++
       "bashls",                     -- Bash
       "jsonls",                     -- JSON
+      "ts_ls",                      -- JS/TS
+      "intelephense",               -- PHP
+      "sqlls",                      -- SQL
     },
   })
   end,
