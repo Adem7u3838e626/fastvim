@@ -59,7 +59,8 @@ return {
     vim.keymap.set("n", "<leader>tv", function()
       vertical_term:toggle()
     end, { desc = "Toggle Vertical Terminal" })
-
+    vim.keymap.set("t", "jk", [[<C-\><C-n>]], { desc = "Exit terminal mode" })
+    vim.keymap.set("t", "<Esc>", [[<C-\><C-n>]], { desc = "Terminal → Normal mode" })
     vim.keymap.set("n", "<leader>tg", function()
       lazygit:toggle()
     end, { desc = "Toggle Lazygit" })
