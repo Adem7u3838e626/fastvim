@@ -2,6 +2,7 @@ return {
   "akinsho/bufferline.nvim",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   version = "*",
+
   opts = {
     options = {
       numbers = "ordinal",
@@ -11,7 +12,12 @@ return {
       show_close_icon = false,
     },
   },
-  vim.keymap.set("n", "<leader>bn", ":BufferLineCycleNext<CR>", { desc = "Next buffer" })
-  vim.keymap.set("n", "<leader>bp", ":BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
-  vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
+
+  config = function(_, opts)
+    require("bufferline").setup(opts)
+
+    vim.keymap.set("n", "<leader>bn", ":BufferLineCycleNext<CR>", { desc = "Next buffer" })
+    vim.keymap.set("n", "<leader>bp", ":BufferLineCyclePrev<CR>", { desc = "Prev buffer" })
+    vim.keymap.set("n", "<leader>bd", ":bdelete<CR>", { desc = "Delete buffer" })
+  end,
 }
