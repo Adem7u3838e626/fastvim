@@ -13,8 +13,6 @@ return {
         '232', '233', '234', '235', '241', '242', '243', '244', '245', '251',
         '252', '253', '254', '255',
       },
-      up_key = 'k',
-      down_key = 'j',
       hidden_file_types = { 'undotree' },
       hidden_buffer_types = { 'terminal', 'nofile' }
     })

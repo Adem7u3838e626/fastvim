@@ -3,6 +3,8 @@ local o = vim.o
 local g = vim.g
 
 -------------------------------------- options ------------------------------------------
+vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
+
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 

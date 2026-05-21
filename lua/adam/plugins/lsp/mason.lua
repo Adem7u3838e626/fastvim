@@ -32,6 +32,8 @@ return {
       "ts_ls",                      -- JS/TS
       "intelephense",               -- PHP
       "sqlls",                      -- SQL
+      "solargraph",                 -- Ruby
+      "gopls",                      -- Go
     },
   })
   end,
