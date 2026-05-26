@@ -55,10 +55,6 @@ return {
 
       elseif ft == "c" then
         cmd = "gcc " .. file .. " -o out && ./out"
-
-      elseif ft == "cpp" then
-        cmd = "g++ " .. file .. " -o out && ./out"
-
       else
         print("No runner for: " .. ft)
         return

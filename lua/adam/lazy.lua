@@ -25,6 +25,7 @@ require("lazy").setup({
     { import = "adam.plugins.debug" },
     { import = "adam.plugins.ui" },
     { import = "adam.plugins.tools" },
+    { import = "adam.plugins.games"}
   },
   install = { colorscheme = { "habamax" } },
   checker = { enabled = true },
