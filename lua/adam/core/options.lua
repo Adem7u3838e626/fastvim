@@ -5,6 +5,7 @@ local g = vim.g
 -------------------------------------- options ------------------------------------------
 vim.o.sessionoptions = "blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
 
+vim.lsp.inlay_hint.enable(true)
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 

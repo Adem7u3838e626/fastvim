@@ -1,5 +1,8 @@
 local dap = require("dap")
 
+-- =====================
+-- PYTHON
+-- =====================
 dap.adapters.python = {
   type = "executable",
   command = "python",
@@ -17,6 +20,10 @@ dap.configurations.python = {
     end,
   },
 }
+
+-- =====================
+-- CODELLDB (C/C++/Rust)
+-- =====================
 dap.adapters.codelldb = {
   type = "server",
   port = "${port}",
@@ -25,3 +32,20 @@ dap.adapters.codelldb = {
     args = { "--port", "${port}" },
   },
 }
+
+local cpp_rust_config = {
+  {
+    name = "Launch file",
+    type = "codelldb",
+    request = "launch",
+    program = function()
+      return vim.fn.input("Path: ", vim.fn.getcwd() .. "/", "file")
+    end,
+    cwd = "${workspaceFolder}",
+    stopOnEntry = false,
+  },
+}
+
+dap.configurations.cpp = cpp_rust_config
+dap.configurations.c = cpp_rust_config
+dap.configurations.rust = cpp_rust_config

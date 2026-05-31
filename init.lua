@@ -1,7 +1,5 @@
 -- Make sure to setup `mapleader` and `maprrequire("adam.core.options")
 require("adam.core.options")
 require("adam.core.keymaps")
-require("adam.core.rust")
-require("adam.core.lsp")
 require("adam.lazy")
 require("adam.debug")
