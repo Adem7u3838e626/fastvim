@@ -9,14 +9,17 @@ vim.lsp.inlay_hint.enable(true)
 vim.opt.encoding = "utf-8"
 vim.opt.fileencoding = "utf-8"
 
+
 vim.opt.guifont = "JetBrainsMono Nerd Font:h12"
 o.laststatus = 3
 o.showmode = false
 o.splitkeep = "screen"
 
 o.clipboard = "unnamedplus"
-o.cursorline = true
-o.cursorlineopt = "number"
+
+vim.opt.cursorline = true
+vim.opt.cursorlineopt = "line"
+
 
 o.expandtab = true
 o.shiftwidth = 2

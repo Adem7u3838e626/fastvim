@@ -4,5 +4,7 @@
 
 !.gitignore
 !init.lua
+!dash.txt
+!README.md
 !lua/**
 
