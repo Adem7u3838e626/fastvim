@@ -4,13 +4,14 @@ return {
   dependencies = {
     "hrsh7th/cmp-buffer",
     "hrsh7th/cmp-path",
-    "hrsh7th/cmp-nvim-lsp", -- ⭐ مهم جدًا
-    "hrsh7th/cmp-cmdline", -- ⭐ command mode
+    "hrsh7th/cmp-nvim-lsp",
+    "hrsh7th/cmp-cmdline",
     "L3MON4D3/LuaSnip",
     "saadparwaiz1/cmp_luasnip",
     "rafamadriz/friendly-snippets",
     "onsails/lspkind.nvim",
   },
+  
 
   config = function()
     local cmp = require("cmp")
@@ -19,7 +20,6 @@ return {
 
     require("luasnip.loaders.from_vscode").lazy_load()
 
-    -- 🔥 LSP source integration
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
     cmp.setup({
@@ -44,7 +44,7 @@ return {
       }),
 
       sources = cmp.config.sources({
-        { name = "nvim_lsp" }, -- ⭐ LSP completion
+        { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "buffer" },
         { name = "path" },
@@ -58,15 +58,32 @@ return {
       },
     })
 
-    -- 🔵 cmdline completion (قوي جدًا)
     cmp.setup.cmdline(":", {
-      mapping = cmp.mapping.preset.cmdline(),
+      mapping = {
+        ["<Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item()
+          else
+            cmp.complete()
+          end
+        end, { "c" }),
+
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          else
+            fallback()
+          end
+        end, { "c" }),
+
+        ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      },
+
       sources = {
         { name = "cmdline" },
         { name = "path" },
       },
-    })
-
+    }) 
     cmp.setup.cmdline("/", {
       mapping = cmp.mapping.preset.cmdline(),
       sources = {

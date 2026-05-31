@@ -1,7 +1,7 @@
 return {
   "uga-rosa/ccc.nvim",
   keys = {
-    { "<leader>cp", "<cmd>CccPick<CR>", desc = "Color Picker" },
+    { "<leader>cc", "<cmd>CccPick<CR>", desc = "Color Picker" },
   },
   config = function()
   local ColorInput = require("ccc.input")

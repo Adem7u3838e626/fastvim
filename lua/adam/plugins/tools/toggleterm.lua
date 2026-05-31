@@ -50,9 +50,6 @@ return {
       elseif ft == "bash" or ft == "sh" then
         cmd = "bash " .. file
 
-      elseif ft == "rust" then
-        cmd = "cargo run"
-
       elseif ft == "c" then
         cmd = "gcc " .. file .. " -o out && ./out"
       else
@@ -75,9 +72,6 @@ return {
 
       elseif ft == "cpp" then
         cmd = "g++ " .. file .. " -o out"
-
-      elseif ft == "rust" then
-        cmd = "cargo build"
 
       else
         print("No compiler for: " .. ft)

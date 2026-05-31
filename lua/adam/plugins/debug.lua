@@ -18,7 +18,6 @@ return {
     require("adam.debug.mason")
     require("adam.debug.signs")
     require("adam.debug.adapters")
-    require("adam.debug.configs")
     require("adam.debug.keymaps")
   end,
 }

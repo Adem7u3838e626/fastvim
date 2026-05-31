@@ -9,6 +9,7 @@ return {
 
   config = function()
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
+    local lspconfig = require("lspconfig")
 
     vim.lsp.config("lua_ls", {
       capabilities = capabilities,
@@ -22,21 +23,20 @@ return {
     })
 
     local servers = {
-      "lua_ls",                     -- Lua
-      "html",                       -- HTML
-      "cssls",                      -- CSS
-      "tailwindcss",                -- Tailwind
-      "pyright",                    -- Python
-      "qmlls",                      -- QML
-      -- "rust_analyzer",              -- Rust --changed rustaceanvim
-      "clangd",                     -- C/C++
-      "bashls",                     -- Bash
-      "jsonls",                     -- JSON
-      "ts_ls",                      -- JS/TS
-      "intelephense",               -- PHP
-      "sqlls",                      -- SQL
-      "solargraph",                 -- Ruby
-      "gopls",                      -- Go
+      "lua_ls",
+      "html",
+      "cssls",
+      "tailwindcss",
+      "pyright",
+      "clangd",
+      "qmlls",
+      "bashls",
+      "jsonls",
+      "tsserver",
+      "intelephense",
+      "sqlls",
+      "solargraph",
+      "gopls",
     }
 
     for _, server in ipairs(servers) do
@@ -44,23 +44,6 @@ return {
         capabilities = capabilities,
       })
     end
-
-    vim.lsp.enable({
-      "lua_ls",                     -- Lua
-      "html",                       -- HTML
-      "cssls",                      -- CSS
-      "tailwindcss",                -- Tailwind
-      "pyright",                    -- Python
-      "qmlls",                      -- QML
-      -- "rust_analyzer",              -- Rust
-      "clangd",                     -- C/C++
-      "bashls",                     -- Bash
-      "jsonls",                     -- JSON
-      "tsserver",                   -- JS/TS
-      "intelephense",               -- PHP
-      "sqlls",                      -- SQL
-      "solargraph",                 -- Ruby
-      "gopls",                      -- Go
-    })
+    vim.lsp.enable(servers)
   end,
 }

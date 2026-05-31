@@ -4,7 +4,7 @@ return {
   keys = {
     {
       "<leader>ws",
-      "<cmd>SessionSave<CR>",
+      "<cmd>AutoSession save<CR>",
       desc = "Quick save current session",
     },    {
       "<leader>wn",
@@ -13,7 +13,7 @@ return {
           prompt = "Session name: ",
         }, function(input)
           if input and input ~= "" then
-            vim.cmd("SessionSave " .. input)
+            vim.cmd("AutoSession save" .. input)
           end
         end)
       end,

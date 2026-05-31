@@ -1,93 +1,109 @@
 return {
-  "nvim-treesitter/nvim-treesitter",
-  build = ":TSUpdate",
-  event = { "BufReadPost", "BufNewFile" },
+  "nvim-treesitter/nvim-treesitter-textobjects",
+  branch = "main",
 
   dependencies = {
-    "nvim-treesitter/nvim-treesitter-textobjects",
+    "nvim-treesitter/nvim-treesitter",
   },
 
+  init = function()
+    -- منع تعارض اختصارات Neovim الافتراضية
+    vim.g.no_plugin_maps = true
+  end,
+
   config = function()
-    local ok, ts = pcall(require, "nvim-treesitter.configs")
+    local ok, ts_textobjects = pcall(require, "nvim-treesitter-textobjects")
     if not ok then
+      vim.notify("Failed to load nvim-treesitter-textobjects", vim.log.levels.ERROR)
       return
     end
 
-    ts.setup({
-      ensure_installed = {
-        "lua",
-        "vim",
-        "vimdoc",
-        "javascript",
-        "typescript",
-        "html",
-        "css",
-        "bash",
-        "json",
-        "python",
-        "markdown",
-        "cpp",
-        "c",
-        "rust",
+    -- =========================
+    -- SELECT (اختيار النصوص)
+    -- =========================
+    ts_textobjects.setup({
+      select = {
+        lookahead = true,
+
+        selection_modes = {
+          ["@parameter.outer"] = "v",
+          ["@function.outer"] = "V",
+          ["@class.outer"] = "V",
+        },
+
+        include_surrounding_whitespace = false,
       },
 
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
+      -- =========================
+      -- MOVE (التنقل بين الكتل)
+      -- =========================
+      move = {
+        set_jumps = true,
 
-      indent = {
-        enable = true,
-      },
+        goto_next_start = {
+          ["]f"] = "@function.outer",
+          ["]c"] = "@class.outer",
+          ["]p"] = "@parameter.inner",
+        },
 
-      auto_install = true,
+        goto_previous_start = {
+          ["[f"] = "@function.outer",
+          ["[c"] = "@class.outer",
+          ["[p"] = "@parameter.inner",
+        },
 
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<CR>",
-          node_incremental = "<CR>",
-          node_decremental = "<BS>",
-          scope_incremental = "<TAB>",
+        goto_next_end = {
+          ["]F"] = "@function.outer",
+          ["]C"] = "@class.outer",
+        },
+
+        goto_previous_end = {
+          ["[F"] = "@function.outer",
+          ["[C"] = "@class.outer",
         },
       },
 
-      textobjects = {
-        select = {
-          enable = true,
-          lookahead = true,
-
-          keymaps = {
-            ["af"] = "@function.outer",
-            ["if"] = "@function.inner",
-            ["ac"] = "@class.outer",
-            ["ic"] = "@class.inner",
-            ["al"] = "@loop.outer",
-            ["il"] = "@loop.inner",
-          },
+      -- =========================
+      -- SWAP (تبديل العناصر)
+      -- =========================
+      swap = {
+        enable = true,
+        swap_next = {
+          ["<leader>a"] = "@parameter.inner",
         },
-
-        move = {
-          enable = true,
-          set_jumps = true,
-
-          goto_next_start = {
-            ["]f"] = "@function.outer",
-            ["]c"] = "@class.outer",
-            ["]l"] = "@loop.outer",
-          },
-
-          goto_previous_start = {
-            ["[f"] = "@function.outer",
-            ["[c"] = "@class.outer",
-            ["[l"] = "@loop.outer",
-          },
+        swap_previous = {
+          ["<leader>A"] = "@parameter.inner",
         },
       },
     })
 
-    vim.opt.foldmethod = "expr"
-    vim.opt.foldexpr = "v:lua.vim.treesitter.foldexpr()"
-    vim.opt.foldenable = false
+    -- =========================
+    -- KEYMAPS إضافية (SELECT يدوي)
+    -- =========================
+    local select = require("nvim-treesitter-textobjects.select")
+
+    vim.keymap.set({ "x", "o" }, "af", function()
+      select.select_textobject("@function.outer", "textobjects")
+    end)
+
+    vim.keymap.set({ "x", "o" }, "if", function()
+      select.select_textobject("@function.inner", "textobjects")
+    end)
+
+    vim.keymap.set({ "x", "o" }, "ac", function()
+      select.select_textobject("@class.outer", "textobjects")
+    end)
+
+    vim.keymap.set({ "x", "o" }, "ic", function()
+      select.select_textobject("@class.inner", "textobjects")
+    end)
+
+    vim.keymap.set({ "x", "o" }, "ap", function()
+      select.select_textobject("@parameter.outer", "textobjects")
+    end)
+
+    vim.keymap.set({ "x", "o" }, "ip", function()
+      select.select_textobject("@parameter.inner", "textobjects")
+    end)
   end,
 }

@@ -25,7 +25,7 @@ return {
       "tailwindcss",                -- Tailwind
       "pyright",                    -- Python
       "qmlls",                      -- QML
-      "rust_analyzer",              -- Rust
+      -- "rust_analyzer",              -- Rust
       "clangd",                     -- C/C++
       "bashls",                     -- Bash
       "jsonls",                     -- JSON
