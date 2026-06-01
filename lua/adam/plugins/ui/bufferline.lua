@@ -1,5 +1,6 @@
 return {
   "akinsho/bufferline.nvim",
+  event = "VeryLazy",
   dependencies = { "nvim-tree/nvim-web-devicons" },
   version = "*",
 
@@ -28,6 +29,5 @@ return {
       vim.cmd("split")
       require("telescope.builtin").find_files()
     end, { desc = "split + find files" })
-
   end,
 }

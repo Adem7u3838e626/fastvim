@@ -6,7 +6,7 @@ if not (vim.uv or vim.loop).fs_stat(lazypath) then
   if vim.v.shell_error ~= 0 then
     vim.api.nvim_echo({
       { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-      { out, "WarningMsg" },
+      { out,                            "WarningMsg" },
       { "\nPress any key to exit..." },
     }, true, {})
     vim.fn.getchar()
@@ -20,12 +20,13 @@ vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
     { import = "adam.plugins.lsp" },
+    { import = "adam.plugins.git" },
     { import = "adam.plugins.completion" },
     { import = "adam.plugins.editor" },
     { import = "adam.plugins.debug" },
     { import = "adam.plugins.ui" },
     { import = "adam.plugins.tools" },
-    { import = "adam.plugins.games"}
+    { import = "adam.plugins.games" }
   },
   install = { colorscheme = { "habamax" } },
   checker = { enabled = true },

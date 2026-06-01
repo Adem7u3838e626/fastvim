@@ -1,6 +1,9 @@
 return {
   "nvim-tree/nvim-tree.lua",
-  dependencies = { "nvim-tree/nvim-web-devicons", "nvim-lua/plenary.nvim" },
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+    "nvim-lua/plenary.nvim"
+  },
   config = function()
     local nvimtree = require("nvim-tree")
     vim.g.loaded_netrw = 1

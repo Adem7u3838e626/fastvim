@@ -10,7 +10,7 @@ return {
       },
 
       formatters_by_ft = {
-        -- lua = { "stylua" },
+        lua = { "stylua" },
         python = { "black" },
         rust = { "rustfmt" },
         javascript = { "prettier" },
