@@ -76,14 +76,26 @@ return {
     -- SELECT (visual / operator pending)
 
     local select = require("nvim-treesitter-textobjects.select")
+
+
+    vim.keymap.set({ "x", "o" }, "av", function()
+      require("nvim-treesitter-textobjects.select")
+          .select_textobject("@variable.outer", "textobjects")
+    end, { desc = "Around variable" })
+
+    vim.keymap.set({ "x", "o" }, "iv", function()
+      require("nvim-treesitter-textobjects.select")
+          .select_textobject("@variable.outer", "textobjects")
+    end, { desc = "Inside variable" })
+
     vim.keymap.set({ "x", "o" }, "ai", function()
       require("nvim-treesitter-textobjects.select")
-      .select_textobject("@conditional.outer", "textobjects")
+          .select_textobject("@conditional.outer", "textobjects")
     end, { desc = "Around if/conditional" })
 
     vim.keymap.set({ "x", "o" }, "ii", function()
       require("nvim-treesitter-textobjects.select")
-      .select_textobject("@conditional.inner", "textobjects")
+          .select_textobject("@conditional.inner", "textobjects")
     end, { desc = "Inside if/conditional" })
 
     vim.keymap.set({ "x", "o" }, "af", function()

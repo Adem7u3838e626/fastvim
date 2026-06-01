@@ -9,17 +9,15 @@ return {
 
   config = function()
     local capabilities = require("cmp_nvim_lsp").default_capabilities()
-    local lspconfig = require("lspconfig")
-
-    vim.lsp.config("lua_ls", {
-      capabilities = capabilities,
-      settings = {
-        Lua = {
-          diagnostics = {
-            globals = { "vim" },
-          },
-        },
+    vim.diagnostic.config({
+      virtual_text = {
+        prefix = "●",
+        spacing = 2,
       },
+      signs = true,
+      underline = true,
+      update_in_insert = false,
+      severity_sort = true,
     })
 
     local servers = {
@@ -44,6 +42,9 @@ return {
         capabilities = capabilities,
       })
     end
+
+    vim.lsp.enable(vim.tbl_extend("force", servers, { "lua_ls" }))
+
     vim.lsp.enable(servers)
   end,
 }
