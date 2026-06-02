@@ -19,6 +19,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 require("lazy").setup({
   spec = {
+    { "lambdalisue/suda.vim" },
+    { "christoomey/vim-tmux-navigator" },
     { import = "adam.plugins.lsp" },
     { import = "adam.plugins.git" },
     { import = "adam.plugins.completion" },

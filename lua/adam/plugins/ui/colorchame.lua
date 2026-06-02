@@ -14,6 +14,7 @@ return {
           functions = { "bold" },
         },
         integrations = {
+          mini = true,
           treesitter = true,
           native_lsp = { enabled = true },
         },

@@ -19,3 +19,14 @@ keymap.set("n", "<c-l>", "<c-w>l", { desc = "move right" })
 keymap.set("n", "<c-j>", "<c-w>j", { desc = "move down" })
 keymap.set("n", "<c-k>", "<c-w>k", { desc = "move up" })
 
+vim.keymap.set("n", "<leader>ch", function()
+  vim.cmd("Huefy")
+end, { desc = "Huefy" })
+
+vim.keymap.set("n", "<leadercs", function()
+  vim.cmd("Shades")
+end, { desc = "Shades" })
+
+vim.keymap.set("n", "<C-t>", function()
+  require("nvshad.themes").open { border = true }
+end, { desc = "Shades" })
