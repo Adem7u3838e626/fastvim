@@ -8,16 +8,15 @@ keymap.set("v", "p", '"_dP', { desc = "Paste without overwrite yank" })
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlight" })
 
 -- splits
--- resize splits with ctrl+shift+hjkl
-vim.keymap.set("n", "<c-s-h>", "<c-w><")
-vim.keymap.set("n", "<c-s-l>", "<c-w>>")
-vim.keymap.set("n", "<c-s-k>", "<c-w>+")
-vim.keymap.set("n", "<c-s-j>", "<c-w>-")
+-- resize splits with alt+hjkl (Ctrl+Shift isn't reliably detected by terminals)
+vim.keymap.set("n", "<a-h>", "<c-w><")
+vim.keymap.set("n", "<a-l>", "<c-w>>")
+vim.keymap.set("n", "<a-k>", "<c-w>+")
+vim.keymap.set("n", "<a-j>", "<c-w>-")
 keymap.set("n", "<leader>bc", ":close<cr>", { noremap = true, silent = true, desc = "close current window" })
-keymap.set("n", "<c-h>", "<c-w>h", { desc = "move left" })
-keymap.set("n", "<c-l>", "<c-w>l", { desc = "move right" })
-keymap.set("n", "<c-j>", "<c-w>j", { desc = "move down" })
-keymap.set("n", "<c-k>", "<c-w>k", { desc = "move up" })
+-- vim-tmux-navigator handles window movement
+
+
 
 vim.keymap.set("n", "<leader>ch", function()
   vim.cmd("Huefy")
