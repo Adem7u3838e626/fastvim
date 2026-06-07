@@ -15,6 +15,9 @@ return {
     build = function()
       require("base46").load_all_highlights()
     end,
+    config = function()
+      require("adam.plugins.ui.base46_setup")
+    end,
   },
 
   "nvchad/volt",

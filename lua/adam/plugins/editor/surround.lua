@@ -19,14 +19,12 @@ return {
           },
         },
       },
-
-      keymaps = {
-        insert = "<C-g>s",
-        normal = "ys",
-        delete = "ds",
-        change = "cs",
-        change_line = "cS",
-      },
     })
+
+    vim.keymap.set("i", "<C-g>s", "<Plug>(nvim-surround-insert)")
+    vim.keymap.set("n", "ys", "<Plug>(nvim-surround-normal)")
+    vim.keymap.set("n", "ds", "<Plug>(nvim-surround-delete)")
+    vim.keymap.set("n", "cs", "<Plug>(nvim-surround-change)")
+    vim.keymap.set("n", "cS", "<Plug>(nvim-surround-change-line)")
   end
 }

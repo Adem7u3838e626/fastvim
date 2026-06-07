@@ -8,7 +8,7 @@ keymap.set("v", "p", '"_dP', { desc = "Paste without overwrite yank" })
 keymap.set("n", "<leader>nh", ":nohl<CR>", { desc = "Clear search highlight" })
 
 -- splits
--- resize splits with alt+hjkl (Ctrl+Shift isn't reliably detected by terminals)
+-- resize splits with alt+hjkl
 vim.keymap.set("n", "<a-h>", "<c-w><")
 vim.keymap.set("n", "<a-l>", "<c-w>>")
 vim.keymap.set("n", "<a-k>", "<c-w>+")
